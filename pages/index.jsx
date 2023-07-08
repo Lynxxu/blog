@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ImageHeader from "./components/ImageStyle.jsx";
+import NavBar from "./components/navbar.jsx";
 
 function Content() {
   return <div style={{ height: "10000px" }}></div>;
@@ -11,11 +12,12 @@ export default function Home() {
       <Head>
         <title>Lynx&apos;s blog</title>
       </Head>
+      <NavBar />
       <ImageHeader
-        path={`images/PranaLieDown.jpg`}
+        path={`images/DSC_0130.jpg`}
         startX={50 + "%"}
         startY={50 + "%"}
-        type={"gradientScopeBlur"}
+        type={"gradientScopeBlack"}
         text="Lynx's Blog"
       />
       <Content />

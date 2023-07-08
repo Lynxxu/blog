@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import styles from "../../styles/Components/themes.module.css";
-import { useRef } from "react";
+
 function getCursorPosition(e) {
   const { innerWidth, innerHeight } = window;
   const x = (e.clientX / innerWidth) * 100;
@@ -8,47 +7,6 @@ function getCursorPosition(e) {
 
   return { x, y };
 }
-
-// export default function ImageHeader({
-//   text = "",
-//   path,
-//   type = "gradientScopeBlur", //another option here is 'gradientScopeBlack', which darkens the rest of area
-//   startX = 0,
-//   startY = 0,
-// }) {
-//   useEffect(() => {
-//     const gradient = document.getElementById("gradient");
-
-//     gradient.style.setProperty("--x", startX);
-//     gradient.style.setProperty("--y", startY);
-
-//     function handleMouseEnter(e) {
-//       const { x, y } = getCursorPosition(e);
-//       gradient.style.setProperty("--x", x + "%");
-//       gradient.style.setProperty("--y", y + "%");
-//     }
-
-//     gradient.addEventListener("mousemove", handleMouseEnter);
-
-//     return () => {
-//       gradient.removeEventListener("mousemove", handleMouseEnter);
-//     };
-//   }, [startX, startY]);
-
-//   return (
-//     <>
-//       <div
-//         className="flex h-screen items-center justify-center bg-cover bg-right"
-//         style={{
-//           backgroundImage: `url(${path})`,
-//         }}
-//       >
-//         <div className={styles[type]} id="gradient"></div>
-//         {text && <div className="text-6xl text-prana-white">{text}</div>}
-//       </div>
-//     </>
-//   );
-// }
 
 export default function ImageHeader({
   text = "",
@@ -73,7 +31,7 @@ export default function ImageHeader({
   return (
     <>
       <div
-        className="flex h-screen items-center justify-center bg-cover bg-right"
+        className="flex h-screen items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage: `url(${path})`,
         }}
@@ -85,7 +43,11 @@ export default function ImageHeader({
           id="gradient"
           ref={(ref) => (gradientRef = ref)}
         ></div>
-        {text && <div className="text-6xl text-prana-white">{text}</div>}
+        {text && (
+          <div className="font-serif text-5xl text-prana-white drop-shadow-xl">
+            {text}
+          </div>
+        )}
       </div>
     </>
   );
