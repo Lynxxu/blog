@@ -14,6 +14,20 @@ module.exports = {
       colors: {
         "prana-white": "#f3f4f6",
       },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease 0s 1 normal",
+        "fade-out": "fadeOut 0.5s ease 0s 1 normal",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0", filter: "alpha((opacity = 0))" },
+          "100%": { opacity: "0.8", filter: "none" },
+        },
+        fadeOut: {
+          "0%": { opacity: "0.8", filter: "none" },
+          "100%": { opacity: "0", filter: "alpha((opacity = 0))" },
+        },
+      },
     },
   },
   plugins: [],
