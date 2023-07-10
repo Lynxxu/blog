@@ -1,9 +1,102 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+function SideBarBlogData() {
+  function SideBarBlogDataInfo({ href, title, number }) {
+    return (
+      <Link
+        href={href}
+        className="m-3 flex flex-col items-center justify-center text-center"
+      >
+        <div className="font-serif font-light">{title}</div>
+        <div className="font-serif font-light italic">{number}</div>
+      </Link>
+    );
+  }
+  return (
+    <div id="sideBarBlogData" className="mt-2 flex items-center justify-center">
+      <SideBarBlogDataInfo href={"#"} title={"Articles"} number={"45"} />
+      <SideBarBlogDataInfo href={"#"} title={"Tags"} number={"99"} />
+      <SideBarBlogDataInfo href={"#"} title={"Topics"} number={"7"} />
+    </div>
+  );
+}
+function SideBarDirectories() {
+  function SingleDirectory({ href, title }) {
+    return (
+      <Link href={href} className="p-2 font-serif">
+        {title}
+      </Link>
+    );
+  }
+
+  return (
+    <div id="sideBarDirectories" className="m-6 flex flex-col justify-center">
+      <SingleDirectory href={"#"} title={"Home"} />
+      <SingleDirectory href={"#"} title={"Coding"} />
+      <SingleDirectory href={"#"} title={"Games"} />
+      <SingleDirectory href={"#"} title={"Archives"} />
+      <SingleDirectory href={"#"} title={"About"} />
+    </div>
+  );
+}
+
+function SideBar({ isOpen, handleCloseSideBar }) {
+  useEffect(() => {
+    // This effect is necessary to avoid unnecessary re-render
+    if (isOpen) {
+      setTimeout(() => {
+        const sideBarMenu = document.getElementById("sideBarMenu");
+        sideBarMenu.style.setProperty("translate", "-100%");
+        sideBarMenu.style.setProperty("transition-duration", "500ms");
+      }, 0);
+    }
+  }, [isOpen]);
+
+  return (
+    <div id="sideBar">
+      <div
+        className="fixed z-20 block h-screen w-full animate-fade-in bg-black opacity-80"
+        onClick={() => handleCloseSideBar()}
+        id="sideBarMask"
+      ></div>
+      <div
+        className="fixed right-[-250px] z-30 flex h-screen w-[250px] flex-col bg-white transition-all"
+        id="sideBarMenu"
+      >
+        <div id="sideBarAvatar" className="mx-auto mt-10">
+          <Image
+            src={"/images/Logo-Con.png"}
+            width={120}
+            height={120}
+            alt="A Lynx constellation Logo"
+            className="p-1"
+          ></Image>
+        </div>
+        <SideBarBlogData />
+        <hr className="hr divide-y-1 w-full" />
+        <SideBarDirectories />
+      </div>
+    </div>
+  );
+}
 
 export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleCloseSideBar = useCallback(() => {
+    const mask = document.getElementById("sideBarMask");
+    const sideBarMenu = document.getElementById("sideBarMenu");
+    mask.classList.replace("animate-fade-in", "animate-fade-out");
+    sideBarMenu.style.removeProperty("translate");
+
+    setTimeout(() => {
+      setIsOpen(!isOpen);
+    }, 500);
+  }, [isOpen]);
+
   useEffect(() => {
+    // This Effect changes the color of navBar and logo
     const navBar = document.getElementById("navBar");
     const headerLogo = document.getElementById("headerLogo");
 
@@ -23,6 +116,7 @@ export default function NavBar() {
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
+    // This effect changes color of text and menu(if in mobile display)
     function handleMenuColorChange() {
       const hamburgerSvg = document.getElementById("hamburgerSvg");
       if (
@@ -49,7 +143,9 @@ export default function NavBar() {
     if (windowWidth > 800) {
       window.addEventListener("scroll", handleTextColorChange);
       window.removeEventListener("scroll", handleMenuColorChange);
-      handleTextColorChange();
+      if (isOpen) {
+        handleCloseSideBar();
+      }
     } else {
       window.removeEventListener("scroll", handleTextColorChange);
       handleMenuColorChange();
@@ -65,40 +161,24 @@ export default function NavBar() {
         setWindowWidth(window.innerWidth);
       });
     };
-  }, [windowWidth]);
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  function SideBar() {
-    function handleCloseSideBar() {
-      const mask = document.getElementById("sideBarMask");
-      mask.classList.replace("animate-fade-in", "animate-fade-out");
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 500);
-    }
-    return (
-      <div id="sideBar">
-        <div
-          className="fixed z-20 block h-screen w-full animate-fade-in bg-black opacity-80"
-          onClick={() => handleCloseSideBar()}
-          id="sideBarMask"
-        ></div>
-        <div className="fixed right-0 z-30 h-screen w-2/3 bg-white"></div>
-      </div>
-    );
-  }
+  }, [windowWidth, isOpen, handleCloseSideBar]);
 
   return (
     <>
-      {isOpen && <SideBar />}
+      {isOpen && (
+        <SideBar
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          handleCloseSideBar={handleCloseSideBar}
+        />
+      )}
       <header
         className="fixed z-10 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
         style={{ transition: "all 1s" }}
         id="navBar"
       >
         <nav className="container mx-auto flex items-center justify-between">
-          <Link href="www.lynx0922.com">
+          <Link href="#">
             <Image
               src={`/images/Logo-eye-white.png`}
               width={30}
@@ -127,7 +207,6 @@ export default function NavBar() {
             <button
               type="button"
               onClick={() => {
-                console.log(isOpen);
                 setIsOpen(!isOpen);
               }}
             >
