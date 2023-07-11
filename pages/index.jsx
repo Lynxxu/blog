@@ -1,6 +1,7 @@
 import Head from "next/head";
 import ImageHeader from "./components/ImageStyle.jsx";
 import NavBar from "./components/navbar.jsx";
+import HomePageContent from "./components/ContentDiv.jsx";
 
 function Content() {
   return <div style={{ height: "10000px" }}></div>;
@@ -20,7 +21,7 @@ export default function Home() {
         type={"gradientScopeBlack"}
         text="Lynx's Blog"
       />
-      <Content />
+      <HomePageContent />
     </>
   );
 }

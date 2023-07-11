@@ -44,7 +44,7 @@ export default function ImageHeader({
           ref={(ref) => (gradientRef = ref)}
         ></div>
         {text && (
-          <div className="font-serif text-[3rem] text-prana-white drop-shadow-xl">
+          <div className="font-serif text-[2rem] text-prana-white drop-shadow-xl md:text-[3rem] lg:text-[3.5rem]">
             {text}
           </div>
         )}
