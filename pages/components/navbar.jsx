@@ -26,7 +26,7 @@ function SideBarBlogData() {
 function SideBarDirectories() {
   function SingleDirectory({ href, title }) {
     return (
-      <Link href={href} className="p-2 font-serif">
+      <Link href={href} className="px-2 py-3 font-serif">
         {title}
       </Link>
     );
