@@ -28,6 +28,9 @@ module.exports = {
           "100%": { opacity: "0", filter: "alpha((opacity = 0))" },
         },
       },
+      transitionDuration: {
+        500: "500",
+      },
     },
   },
   plugins: [],
