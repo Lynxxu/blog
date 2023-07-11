@@ -22,6 +22,7 @@ function SideBarBlogData() {
     </div>
   );
 }
+
 function SideBarDirectories() {
   function SingleDirectory({ href, title }) {
     return (
