@@ -1,7 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProfilePic from "../../public/images/ProfilePicTignari.jpg";
+import constallation from "../../public/images/Logo-Con.png";
+import starRail from "../../public/images/StarRail.jpg";
+import { ConLogoDivide } from "./ImageStyle.jsx";
 
-export function ArticleCard({
+export function LineDivide() {
+  return <hr className="divide-y-1 mb-4 w-full border-gray-400 opacity-30" />;
+}
+
+export function CenterTextDiv({ text }) {
+  return (
+    <div className="m-5 mt-40 font-serif text-2xl font-normal md:w-1/2">
+      <p className="container my-20 ">{text}</p>
+    </div>
+  );
+}
+
+function ArticleCard({
   title,
   date,
   imageSrc,
@@ -14,17 +30,18 @@ export function ArticleCard({
 }) {
   return (
     <Link href={articleSrc}>
-      <div className="container m-auto mt-3 flex rounded-lg border border-gray-200 p-4 shadow-md">
-        <Image
-          src={imageSrc}
-          width={width}
-          height={height}
-          alt={alt}
-          className="me-4 p-2"
-          style={imageStyle}
-        ></Image>
-        <div className="flex flex-col">
-          <h1 className="text-bold">{title}</h1>
+      <div className="m-auto mt-3 flex rounded-lg  border border-gray-200 p-4 shadow-md">
+        <div className="flex w-1/4 content-center justify-center pe-4 md:w-1/5 xl:w-[10%]">
+          <Image
+            src={imageSrc}
+            width={width}
+            height={height}
+            alt={alt}
+            style={imageStyle}
+          ></Image>
+        </div>
+        <div className="flex w-3/4 flex-col md:w-4/5  xl:w-[90%]">
+          <h1 className="font-medium">{title}</h1>
           <p className="mt-1 text-sm text-gray-400">{date}</p>
           <p className="mt-2 line-clamp-3 text-sm text-gray-800">{summary}</p>
         </div>
@@ -33,30 +50,215 @@ export function ArticleCard({
   );
 }
 
+function ImageArticleCardSquare({
+  title,
+  imageSrc,
+  alt,
+  articleSrc,
+  imageStyle = {}, // This takes inline CSS property-value pairs
+  height = 500,
+  width = 750,
+}) {
+  return (
+    <Link href={articleSrc}>
+      <div className="m-auto mt-3 rounded-lg p-4">
+        <div className="flex w-full flex-col items-center justify-center">
+          <Image
+            src={imageSrc}
+            width={width}
+            height={height}
+            alt={alt}
+            style={imageStyle}
+          ></Image>
+          <h2 className="mt-2 line-clamp-3 w-[200px] text-center text-sm font-light uppercase text-gray-800">
+            {title}
+          </h2>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function CollapsableSideBar() {
+  return (
+    <div id="col2-sidebar" className="m-2 md:mx-auto md:w-1/3 md:ps-3">
+      <h2 className="py-4 font-serif text-lg font-bold">About Me</h2>
+
+      <Image
+        src={ProfilePic}
+        alt="Profile picture, Tignari from Genshin Impact"
+      ></Image>
+    </div>
+  );
+}
+
+function LatestFromBlog() {
+  return (
+    <>
+      <p>Recommended Articles</p>
+      <div id="latest" className="flex">
+        <ImageArticleCardSquare
+          title="Kyoto: a sanatorium, where my heart lies"
+          articleSrc={"#"}
+          alt={"My tour to Kyoto"}
+          imageSrc={"/images/K-on.jpg"}
+        />
+        <ImageArticleCardSquare
+          title="Kyoto: a sanatorium, where my heart lies"
+          articleSrc={"#"}
+          alt={"My tour to Kyoto"}
+          imageSrc={"/images/K-on.jpg"}
+        />
+        <ImageArticleCardSquare
+          title="Kyoto: a sanatorium, where my heart lies"
+          articleSrc={"#"}
+          alt={"My tour to Kyoto"}
+          imageSrc={"/images/K-on.jpg"}
+        />
+      </div>
+    </>
+  );
+}
+
 export default function HomePageContent() {
   return (
-    <div id="main-wrapper" className="container m-auto p-1 md:mt-5 md:p-4">
+    <div id="main-wrapper" className="container m-auto mt-2 p-1 md:mt-5 md:p-4">
       <div
         id="content"
-        className="conatiner m-auto flex flex-wrap justify-center"
+        className=" m-auto flex flex-wrap items-center justify-center"
       >
-        <div id="col1-content" className="pe-2 md:w-2/3">
-          <h1 className="py-2 text-xl">Recommended Articles</h1>
-          <ArticleCard
-            title={"Promise: the utlimate solution to async JavaScript"}
-            date={"2022-09-22"}
-            imageSrc={"./images/JS-Logo.svg"}
-            summary={
-              "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It "
-            }
-            alt={"JavaScript logo"}
-            articleSrc={"#"}
-          />
-        </div>
-        <div id="col2-sidebar" className="ps-2 md:w-1/3">
-          <h2 className="text-md">About Me</h2>
-        </div>
+        <CenterTextDiv
+          text="Welcome to my creative haven. I'm Lynx, a traveler and gamer at
+        heart. Join me as I explore the world, delve into Japanese ACG, and
+        share insights from front-end development to travel logs. Let's
+        embark on this journey together, one post at a time."
+        />
+        <Image
+          src={starRail}
+          width={200}
+          height={200}
+          alt="starRail picture for deco"
+        />
+      </div>
+      <ConLogoDivide />
+      <LineDivide />
+      <div
+        id="content"
+        className=" m-auto flex flex-wrap justify-center align-top"
+      >
+        <LatestFromBlog />
       </div>
     </div>
   );
 }
+
+// export default function HomePageContent() {
+//   return (
+//     <div id="main-wrapper" className="container m-auto mt-2 p-1 md:mt-5 md:p-4">
+//       <div
+//         id="content"
+//         className=" m-auto flex flex-wrap items-center justify-center"
+//       >
+//         <CenterTextDiv
+//           text="Welcome to my creative haven. I'm Lynx, a traveler and gamer at
+//         heart. Join me as I explore the world, delve into Japanese ACG, and
+//         share insights from front-end development to travel logs. Let's
+//         embark on this journey together, one post at a time."
+//         />
+//         <div>
+//           <Image
+//             src={starRail}
+//             alt="Profile picture, Tignari from Genshin Impact"
+//             width={200}
+//           ></Image>
+//         </div>
+//       </div>
+//       <hr className="divide-y-1 mb-4 w-full border-gray-400" />
+//       <div
+//         id="content"
+//         className=" m-auto flex flex-wrap justify-center align-top"
+//       >
+//         <div id="col1-content" className="m-3 sm:m-auto md:w-2/3 md:pe-3">
+//           <h1 className="py-2 font-serif text-2xl font-bold">
+//             Recommended Articles
+//           </h1>
+//           <ArticleCard
+//             title={"Promise: the utlimate solution to async JavaScript"}
+//             date={"2022-09-22"}
+//             imageSrc={"./images/JS-Logo.svg"}
+//             summary={
+//               "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript."
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//             height={60}
+//             width={60}
+//           />
+//           <ArticleCard
+//             title={"Synchronizing with external APIs with useEffect hook"}
+//             date={"2023-07-22"}
+//             imageSrc={"/images/React-Logo.svg"}
+//             summary={
+//               "Some components may need to synchronize with external systems. For example, you may wish to send some logs when a component appears on screen. This can be done by Effects, which allows you to run some code after rendering."
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//             width={90}
+//             height={90}
+//           />
+//           <ArticleCard
+//             title={"Promise: the utlimate solution to async JavaScript"}
+//             date={"2022-09-22"}
+//             imageSrc={"./images/JS-Logo.svg"}
+//             summary={
+//               "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It "
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//           />
+//           <ArticleCard
+//             title={"Promise: the utlimate solution to async JavaScript"}
+//             date={"2022-09-22"}
+//             imageSrc={"./images/JS-Logo.svg"}
+//             summary={
+//               "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It "
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//           />
+//           <ArticleCard
+//             title={"Promise: the utlimate solution to async JavaScript"}
+//             date={"2022-09-22"}
+//             imageSrc={"./images/JS-Logo.svg"}
+//             summary={
+//               "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It "
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//           />
+//           <ArticleCard
+//             title={"Promise: the utlimate solution to async JavaScript"}
+//             date={"2022-09-22"}
+//             imageSrc={"./images/JS-Logo.svg"}
+//             summary={
+//               "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It "
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//           />
+//           <ArticleCard
+//             title={"Promise: the utlimate solution to async JavaScript"}
+//             date={"2022-09-22"}
+//             imageSrc={"./images/JS-Logo.svg"}
+//             summary={
+//               "Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It  Promise provides an elegant solution to the problem of asychronous JavaScript. It Promise provides an elegant solution to the problem of asychronous JavaScript. It "
+//             }
+//             alt={"JavaScript logo"}
+//             articleSrc={"#"}
+//           />
+//         </div>
+//         <CollapsableSideBar />
+//       </div>
+//   </div>
+// );
+// }

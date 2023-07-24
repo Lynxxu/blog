@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
@@ -31,7 +32,10 @@ module.exports = {
       transitionDuration: {
         500: "500",
       },
+      fontFamily: {
+        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+        serif: ["var(--font-garamond)", ...defaultTheme.fontFamily.serif],
+      },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
 };

@@ -1,4 +1,15 @@
 import styles from "../../styles/Components/themes.module.css";
+import Image from "next/image";
+import LogoCon from "../../public/images/Logo-Con-tri.png";
+
+export function DarkenedLayer() {
+  return (
+    <>
+      <div className="absolute h-full w-full bg-black opacity-50 backdrop-blur-xl"></div>
+      <div className="absolute h-full w-full backdrop-blur-sm"></div>
+    </>
+  );
+}
 
 function getCursorPosition(e) {
   const { innerWidth, innerHeight } = window;
@@ -8,7 +19,7 @@ function getCursorPosition(e) {
   return { x, y };
 }
 
-export default function ImageHeader({
+export default function ImageHeaderFull({
   text = "",
   path,
   type = "gradientScopeBlur",
@@ -31,7 +42,7 @@ export default function ImageHeader({
   return (
     <>
       <div
-        className="flex h-screen items-center justify-center bg-cover bg-center"
+        className="flex h-screen flex-wrap items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage: `url(${path})`,
         }}
@@ -44,11 +55,25 @@ export default function ImageHeader({
           ref={(ref) => (gradientRef = ref)}
         ></div>
         {text && (
-          <div className="font-serif text-[2rem] text-prana-white drop-shadow-xl md:text-[3rem] lg:text-[3.5rem]">
+          <div className="font-serif text-[2.5rem] text-prana-white drop-shadow-xl md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]">
             {text}
           </div>
         )}
       </div>
     </>
+  );
+}
+
+export function ConLogoDivide() {
+  return (
+    <div>
+      <Image
+        className="m-auto my-32 content-center opacity-70"
+        src={LogoCon}
+        width={500}
+        height={100}
+        alt="Constellation logo divide"
+      ></Image>
+    </div>
   );
 }

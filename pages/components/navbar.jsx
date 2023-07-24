@@ -83,7 +83,7 @@ function SideBar({ isOpen, handleCloseSideBar }) {
   );
 }
 
-export default function NavBar() {
+export default function NavBar({ scrollModifier = 1 }) {
   const [isOpen, setIsOpen] = useState(false);
   const handleCloseSideBar = useCallback(() => {
     const mask = document.getElementById("sideBarMask");
@@ -102,7 +102,10 @@ export default function NavBar() {
     const headerLogo = document.getElementById("headerLogo");
 
     window.addEventListener("scroll", () => {
-      if (document.documentElement.scrollTop > window.innerHeight) {
+      if (
+        document.documentElement.scrollTop >
+        window.innerHeight / scrollModifier
+      ) {
         navBar.classList.remove("bg-transparent");
         navBar.classList.add("bg-prana-white");
         headerLogo.classList.add("invert");
@@ -121,7 +124,8 @@ export default function NavBar() {
     function handleMenuColorChange() {
       const hamburgerSvg = document.getElementById("hamburgerSvg");
       if (
-        document.documentElement.scrollTop > window.innerHeight &&
+        document.documentElement.scrollTop >
+          window.innerHeight / scrollModifier &&
         hamburgerSvg
       ) {
         hamburgerSvg.setAttribute("color", "black");
@@ -132,7 +136,11 @@ export default function NavBar() {
 
     function handleTextColorChange() {
       const navLinks = document.getElementById("navLinks");
-      if (document.documentElement.scrollTop > window.innerHeight && navLinks) {
+      if (
+        document.documentElement.scrollTop >
+          window.innerHeight / scrollModifier &&
+        navLinks
+      ) {
         navLinks.classList.add("text-black");
       } else if (navLinks) {
         navLinks.classList.remove("text-black");
@@ -174,7 +182,7 @@ export default function NavBar() {
         />
       )}
       <header
-        className="fixed z-10 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
+        className="fixed z-50 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
         style={{ transition: "all 1s" }}
         id="navBar"
       >

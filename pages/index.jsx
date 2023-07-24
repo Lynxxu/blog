@@ -1,11 +1,10 @@
 import Head from "next/head";
-import ImageHeader from "./components/ImageStyle.jsx";
+import ImageHeaderFull from "./components/ImageStyle.jsx";
+import { ImageHeaderHalf } from "./components/ImageHeaderHalf.jsx";
 import NavBar from "./components/navbar.jsx";
 import HomePageContent from "./components/ContentDiv.jsx";
-
-function Content() {
-  return <div style={{ height: "10000px" }}></div>;
-}
+import Footer from "./components/footer.jsx";
+import ImageCarousel from "./components/ImageCarousel.jsx";
 
 export default function Home() {
   return (
@@ -14,14 +13,37 @@ export default function Home() {
         <title>Lynx&apos;s blog</title>
       </Head>
       <NavBar />
-      <ImageHeader
+      <ImageHeaderFull
         path={`images/DSC_0130.jpg`}
         startX={50 + "%"}
         startY={50 + "%"}
         type={"gradientScopeBlack"}
         text="Lynx's Blog"
       />
+
       <HomePageContent />
+      <ImageCarousel />
+      <Footer />
     </>
   );
 }
+
+// export default function Home() {
+//   return (
+//     <>
+//       <Head>
+//         <title>Lynx&apos;s blog</title>
+//       </Head>
+//       <NavBar scrollModifier={2} />
+//       <ImageHeaderHalf
+//         path={`images/DSC_0130.jpg`}
+//         startX={50 + "%"}
+//         startY={50 + "%"}
+//         type={"gradientScopeBlack"}
+//         text="Lynx's Blog"
+//       />
+//       <HomePageContent />
+//       <Footer />
+//     </>
+//   );
+// }
