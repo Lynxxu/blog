@@ -170,7 +170,7 @@ export default function NavBar({ scrollModifier = 1 }) {
         setWindowWidth(window.innerWidth);
       });
     };
-  }, [windowWidth, isOpen, handleCloseSideBar]);
+  }, [windowWidth, isOpen, handleCloseSideBar, scrollModifier]);
 
   return (
     <>
