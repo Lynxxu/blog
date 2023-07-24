@@ -1,4 +1,4 @@
-export function ImageHeaderHalf({ text, path }) {
+export default function ImageHeaderHalf({ text, path }) {
   return (
     <>
       <div
