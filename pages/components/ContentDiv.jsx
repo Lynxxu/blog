@@ -96,7 +96,7 @@ function LatestFromBlog() {
   return (
     <>
       <p>Recommended Articles</p>
-      <div id="latest" className="flex">
+      <div id="latest" className="flex overflow-hidden">
         <ImageArticleCardSquare
           title="Kyoto: a sanatorium, where my heart lies"
           articleSrc={"#"}

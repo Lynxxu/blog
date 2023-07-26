@@ -63,7 +63,7 @@ function SideBar({ isOpen, handleCloseSideBar }) {
         id="sideBarMask"
       ></div>
       <div
-        className="fixed right-[-250px] z-30 flex h-screen w-[250px] flex-col bg-white transition-all"
+        className="fixed right-[-250px] z-50 flex h-screen w-[250px] flex-col bg-white transition-all"
         id="sideBarMenu"
       >
         <div id="sideBarAvatar" className="mx-auto mt-10">
@@ -182,7 +182,7 @@ export default function NavBar({ scrollModifier = 1 }) {
         />
       )}
       <header
-        className="fixed z-50 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
+        className="fixed z-40 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
         style={{ transition: "all 1s" }}
         id="navBar"
       >
