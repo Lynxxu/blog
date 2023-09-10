@@ -171,7 +171,6 @@ import styles from "../../styles/Components/themes.module.css";
 //       >
 //         &lt;
 //       </button>
-
 //       <button
 //         id="carouselRightButton"
 //         className="z-10 text-white"
@@ -184,23 +183,33 @@ import styles from "../../styles/Components/themes.module.css";
 // }
 
 export default function ImageCarousel() {
-  function ImageBackground({ imageId, id }) {
-    return (
-      <div
-        id={"CarouselBackgroundWrapper-" + id}
-        className="image-transition absolute my-auto flex h-screen w-full bg-cover bg-no-repeat"
-      >
-        <div
-          id={"CarouselBackground" + id}
-          className="image-transition my-auto flex h-screen w-full bg-cover bg-no-repeat"
-          style={{
-            backgroundImage: `url(${imageArray[imageId]})`,
-            transition: "opacity 1s ease-in-out",
-          }}
-        ></div>
-      </div>
+  let imageIndex = 0;
+  function handleChangeImageLeft() {
+    let currentImage = document.getElementById(
+      `CarouselFrontImage-` + imageIndex
     );
+
+    currentImage.classList.remove("opacity-100");
+    setTimeout(
+      (() => {
+        currentImage.classList.remove("transition-opacity");
+      },
+      0)
+    );
+
+    console.log(imageIndex);
+    if (imageIndex === 0) {
+      imageIndex = 2;
+    } else {
+      imageIndex -= 1;
+    }
+
+    document
+      .getElementById(`CarouselFrontImage-` + imageIndex)
+      .classList.add("opacity-100", "transition-opacity");
+    console.log(imageIndex);
   }
+
   const imageArray = [
     "/images/Fushimi-inari-taisha.jpg",
     "/images/KON-table.jpg",
@@ -208,13 +217,51 @@ export default function ImageCarousel() {
   ];
 
   return (
-    <div id="ImageCarouselNav" className="h-full w-full">
-      <div id="Carousel-bg-container h-full w-full absolute">
-        <ImageBackground id={0} imageId={0} />
-        <ImageBackground id={1} imageId={1} />
-        <ImageBackground id={2} imageId={2} />
-        <DarkenedLayer />
-      </div>
+    <div id="Inner-carousel" className="relative h-full w-full">
+      <button
+        id="carousel-button-left"
+        className="absolute left-1 top-[50%] z-40"
+        onClick={handleChangeImageLeft}
+      >
+        &#8656;
+      </button>
+      <button
+        id="carousel-button-right"
+        className="absolute right-1 top-[50%] z-40"
+      >
+        &#8658;
+      </button>
+
+      <Image
+        priority={true}
+        src={imageArray[0]}
+        width={1500}
+        height={1500}
+        alt="images for articles"
+        id="CarouselFrontImage-0"
+        className={`relative inset-0 z-10 w-full bg-cover opacity-0 opacity-100 transition-opacity`}
+        style={{ transitionDuration: "500ms" }}
+      />
+
+      <Image
+        src={imageArray[1]}
+        width={1500}
+        height={1500}
+        alt="images for articles"
+        id="CarouselFrontImage-1"
+        className={`absolute inset-0 z-10 w-full bg-cover opacity-0 `}
+        style={{ transitionDuration: "500ms" }}
+      />
+
+      <Image
+        src={imageArray[2]}
+        width={1500}
+        height={1500}
+        alt="images for articles"
+        id="CarouselFrontImage-2"
+        className={`absolute inset-0 z-10 w-full bg-cover opacity-0`}
+        style={{ transitionDuration: "500ms" }}
+      />
     </div>
   );
 }

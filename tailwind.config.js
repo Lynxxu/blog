@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       transitionDuration: {
-        500: "500",
+        500: "500ms",
       },
       fontFamily: {
         sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
