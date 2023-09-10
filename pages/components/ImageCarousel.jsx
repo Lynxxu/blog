@@ -212,51 +212,54 @@ export default function ImageCarousel() {
   ];
 
   return (
-    <div id="Inner-carousel" className="relative h-full w-full">
-      <button
-        id="carousel-button-left"
-        className="absolute left-1 top-[50%] z-40"
-        onClick={handleChangeImageLeft}
-      >
-        &#8656;
-      </button>
-      <button
-        id="carousel-button-right"
-        className="absolute right-1 top-[50%] z-40"
-      >
-        &#8658;
-      </button>
+    <>
+      <div id="carousel-background" className="relative h-[100vh] w-full">
+        <button
+          id="carousel-button-left"
+          className="absolute left-1 top-[50%] z-40"
+          onClick={handleChangeImageLeft}
+        >
+          &#8656;
+        </button>
+        <button
+          id="carousel-button-right"
+          className="absolute right-1 top-[50%] z-40"
+        >
+          &#8658;
+        </button>
 
-      <Image
-        priority={true}
-        src={imageArray[0]}
-        width={1500}
-        height={1500}
-        alt="images for articles"
-        id="CarouselFrontImage-0"
-        className={`relative inset-0 z-10 w-full bg-cover opacity-0 opacity-100 transition-opacity`}
-        style={{ transitionDuration: "500ms" }}
-      />
+        <Image
+          priority={true}
+          src={imageArray[0]}
+          width={1500}
+          height={1500}
+          alt="images for articles"
+          id="CarouselFrontImage-0"
+          className={`absolute inset-0 z-10 h-[100vh] w-full object-cover opacity-0 opacity-100 transition-opacity`}
+          style={{ transitionDuration: "300ms" }}
+        />
 
-      <Image
-        src={imageArray[1]}
-        width={1500}
-        height={1500}
-        alt="images for articles"
-        id="CarouselFrontImage-1"
-        className={`absolute inset-0 z-10 w-full bg-cover opacity-0 `}
-        style={{ transitionDuration: "500ms" }}
-      />
+        <Image
+          src={imageArray[1]}
+          width={1500}
+          height={1500}
+          alt="images for articles"
+          id="CarouselFrontImage-1"
+          className={`absolute inset-0 z-10 h-[100vh] w-full object-cover opacity-0 `}
+          style={{ transitionDuration: "300ms" }}
+        />
 
-      <Image
-        src={imageArray[2]}
-        width={1500}
-        height={1500}
-        alt="images for articles"
-        id="CarouselFrontImage-2"
-        className={`absolute inset-0 z-10 w-full bg-cover opacity-0`}
-        style={{ transitionDuration: "500ms" }}
-      />
-    </div>
+        <Image
+          src={imageArray[2]}
+          width={1500}
+          height={1500}
+          alt="images for articles"
+          id="CarouselFrontImage-2"
+          className={`absolute inset-0 z-10 h-[100vh] w-full object-cover opacity-0`}
+          style={{ transitionDuration: "300ms" }}
+        />
+      </div>
+      <div id="carousel-front" className="absolute"></div>
+    </>
   );
 }
