@@ -189,25 +189,20 @@ export default function ImageCarousel() {
       `CarouselFrontImage-` + imageIndex
     );
 
-    currentImage.classList.remove("opacity-100");
-    setTimeout(
-      (() => {
-        currentImage.classList.remove("transition-opacity");
-      },
-      0)
-    );
+    currentImage.classList.remove("opacity-100", "transition-opacity");
 
-    console.log(imageIndex);
     if (imageIndex === 0) {
       imageIndex = 2;
     } else {
       imageIndex -= 1;
     }
 
-    document
-      .getElementById(`CarouselFrontImage-` + imageIndex)
-      .classList.add("opacity-100", "transition-opacity");
-    console.log(imageIndex);
+    let nextImage = document.getElementById(`CarouselFrontImage-` + imageIndex);
+    nextImage.classList.add("opacity-100");
+
+    setTimeout(() => {
+      nextImage.classList.add("transition-opacity");
+    }, 300);
   }
 
   const imageArray = [
