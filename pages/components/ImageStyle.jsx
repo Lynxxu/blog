@@ -5,8 +5,8 @@ import LogoCon from "../../public/images/Logo-Con-tri.png";
 export function DarkenedLayer() {
   return (
     <>
-      <div className="absolute h-full w-full bg-black opacity-50 backdrop-blur-xl"></div>
-      <div className="absolute h-full w-full backdrop-blur-sm"></div>
+      <div className="absolute z-20 h-full w-full bg-black opacity-50 backdrop-blur-xl"></div>
+      <div className="absolute z-20 h-full w-full backdrop-blur-sm"></div>
     </>
   );
 }
