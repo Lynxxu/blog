@@ -3,10 +3,17 @@ import Image from "next/image";
 import LogoCon from "../../public/images/Logo-Con-tri.png";
 
 export function DarkenedLayer() {
+  let vw = document.documentElement.clientWidth;
   return (
     <>
-      <div className="absolute z-20 h-full w-full bg-black opacity-50 backdrop-blur-xl"></div>
-      <div className="absolute z-20 h-full w-full backdrop-blur-sm"></div>
+      <div
+        className="absolute  z-20 h-[100vh] bg-black opacity-50 backdrop-blur-xl"
+        style={{ width: vw }}
+      ></div>
+      <div
+        className="absolute z-20 h-[100vh] w-[100vw] backdrop-blur-sm"
+        style={{ width: vw }}
+      ></div>
     </>
   );
 }

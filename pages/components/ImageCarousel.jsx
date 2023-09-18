@@ -309,9 +309,9 @@ export default function ImageCarousel() {
       </div>
       <div
         id="carousel-front"
-        className="container relative z-20 m-auto h-[100vh]"
+        className="relative z-20 m-auto h-[100vh] 2xl:container"
       >
-        <div id="carousel-buttons" className="invisible 2xl:visible">
+        <div id="carousel-buttons" className="hidden 2xl:block">
           <button
             id="carousel-button-left"
             className="HOVER ripple-effects absolute left-[80px] top-[50%] rounded-lg border border-white p-2 px-3 text-2xl text-white active:border-black"
