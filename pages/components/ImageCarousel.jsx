@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { DarkenedLayer } from "./ImageStyle.jsx";
+import { DarkenedLayer, getLocalCursorPosition } from "./ImageStyle.jsx";
 import { useEffect, useState } from "react";
 import styles from "../../styles/Components/themes.module.css";
 
@@ -184,10 +184,40 @@ import styles from "../../styles/Components/themes.module.css";
 
 export default function ImageCarousel() {
   let imageIndex = 0;
-  let arrowDirection = "";
+  useEffect(() => {
+    const ELEMENTS = document.querySelectorAll(".ripple-effects");
+    const ELEMENTS_SPAN = [];
+
+    ELEMENTS.forEach((element, index) => {
+      // Elements that contain the "FLASH" class, add a listener to remove
+      // animation-class when the animation ends
+
+      element.addEventListener("animationend", (e) => {
+        element.classList.remove(ANIMATEDCLASSNAME);
+      });
+
+      // If The span element for this element does not exist in the array, add it.
+      if (!ELEMENTS_SPAN[index]) {
+        ELEMENTS_SPAN[index] = element.querySelector("span");
+      }
+
+      element.addEventListener("mouseover", (e) => {
+        let { x, y } = getLocalCursorPosition(e);
+        ELEMENTS_SPAN[index].style.left = x + "px";
+        ELEMENTS_SPAN[index].style.top = y + "px";
+      });
+
+      element.addEventListener("mouseout", (e) => {
+        let { x, y } = getLocalCursorPosition(e);
+        ELEMENTS_SPAN[index].style.left = x + "px";
+        ELEMENTS_SPAN[index].style.top = y + "px";
+      });
+    });
+  });
+
   function handleChangeImage(arrowDirection) {
     const buttonLeft = document.getElementById("carousel-button-left");
-
+    const buttonRight = document.getElementById("carousel-button-right");
     let currentBackImage = document.getElementById(
       `CarouselBackImage-` + imageIndex
     );
@@ -229,8 +259,10 @@ export default function ImageCarousel() {
     }, 300);
 
     buttonLeft.setAttribute("disabled", true);
+    buttonRight.setAttribute("disabled", true);
     setTimeout(() => {
       buttonLeft.removeAttribute("disabled");
+      buttonRight.removeAttribute("disabled");
     }, 800);
   }
 
@@ -244,21 +276,6 @@ export default function ImageCarousel() {
     <>
       <DarkenedLayer />
       <div id="carousel-background" className="absolute h-[100vh] w-full">
-        <button
-          id="carousel-button-left"
-          className="absolute left-1 top-[50%] z-20"
-          onClick={() => handleChangeImage("left")}
-        >
-          &#8656;
-        </button>
-        <button
-          id="carousel-button-right"
-          className="absolute right-1 top-[50%] z-20"
-          onClick={() => handleChangeImage("right")}
-        >
-          &#8658;
-        </button>
-
         <Image
           priority={true}
           src={imageArray[0]}
@@ -294,6 +311,26 @@ export default function ImageCarousel() {
         id="carousel-front"
         className="container relative z-20 m-auto h-[100vh]"
       >
+        <div id="carousel-buttons" className="invisible 2xl:visible">
+          <button
+            id="carousel-button-left"
+            className="HOVER ripple-effects absolute left-[80px] top-[50%] rounded-lg border border-white p-2 px-3 text-2xl text-white active:border-black"
+            onClick={() => handleChangeImage("left")}
+          >
+            <text>&#8656;</text>
+            <span></span>
+          </button>
+          <button
+            id="carousel-button-right"
+            className="HOVER ripple-effects absolute right-[80px] top-[50%] rounded-lg border border-white p-2 px-3 text-2xl text-white active:border-black"
+            onClick={() => {
+              handleChangeImage("right");
+            }}
+          >
+            <text>&#8658;</text>
+            <span></span>
+          </button>
+        </div>
         <Image
           src={imageArray[0]}
           width={1200}

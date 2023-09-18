@@ -11,11 +11,18 @@ export function DarkenedLayer() {
   );
 }
 
-function getCursorPosition(e) {
+export function getCursorPosition(e) {
   const { innerWidth, innerHeight } = window;
   const x = (e.clientX / innerWidth) * 100;
   const y = (e.clientY / innerHeight) * 100;
 
+  return { x, y };
+}
+
+export function getLocalCursorPosition(e, offsetX = 0, offsetY = 0) {
+  let rect = e.target.getBoundingClientRect();
+  let x = e.clientX - rect.left - offsetX;
+  let y = e.clientY - rect.top - offsetY;
   return { x, y };
 }
 

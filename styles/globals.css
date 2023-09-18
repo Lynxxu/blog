@@ -13,3 +13,46 @@
     @apply rounded-sm bg-green-400; /*color trackbar*/
   }
 }
+
+@layer components {
+  .HOVER {
+    --width: 150%;
+    --time: 0.7s;
+
+    color: white;
+    background: #222;
+    overflow: hidden;
+  }
+
+  .HOVER text {
+    position: relative;
+    z-index: 30;
+
+    transition: color var(--time);
+  }
+
+  .HOVER:hover text {
+    z-index: 30;
+    color: #222;
+  }
+
+  .HOVER span {
+    position: absolute;
+    display: block;
+    content: "";
+    z-index: 0;
+    width: 0;
+    height: 0;
+
+    border-radius: 100%;
+    background: #fff;
+
+    transform: translate(-50%, -50%);
+    transition: width var(--time), padding-top var(--time);
+  }
+
+  .HOVER:hover span {
+    width: calc(var(--width) * 2.25);
+    padding-top: calc(var(--width) * 2.25);
+  }
+}
