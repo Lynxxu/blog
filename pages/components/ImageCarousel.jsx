@@ -309,7 +309,7 @@ export default function ImageCarousel() {
       </div>
       <div
         id="carousel-front"
-        className="relative z-20 m-auto h-[100vh] 2xl:container"
+        className="container relative z-20 m-auto h-[100vh]"
       >
         <div id="carousel-buttons" className="hidden 2xl:block">
           <button
