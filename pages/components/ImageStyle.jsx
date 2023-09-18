@@ -3,7 +3,9 @@ import Image from "next/image";
 import LogoCon from "../../public/images/Logo-Con-tri.png";
 
 export function DarkenedLayer() {
-  let vw = document.documentElement.clientWidth;
+  setTimeout(() => {
+    let vw = document.documentElement.clientWidth;
+  }, 0);
   return (
     <>
       <div
