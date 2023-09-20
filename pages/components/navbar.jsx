@@ -48,9 +48,11 @@ function SideBar({ isOpen, handleCloseSideBar }) {
     // This effect is necessary to avoid unnecessary re-render
     if (isOpen) {
       setTimeout(() => {
+        let navbar = document.getElementById("navBar");
         const sideBarMenu = document.getElementById("sideBarMenu");
         sideBarMenu.style.setProperty("translate", "-100%");
         sideBarMenu.style.setProperty("transition-duration", "500ms");
+        navbar.classList.add("opacity-0");
       }, 0);
     }
   }, [isOpen]);
@@ -58,12 +60,12 @@ function SideBar({ isOpen, handleCloseSideBar }) {
   return (
     <div id="sideBar">
       <div
-        className="fixed z-50 block h-screen w-full animate-fade-in bg-black opacity-80"
+        className="fixed z-30 block h-screen w-full animate-fade-in bg-black opacity-80"
         onClick={() => handleCloseSideBar()}
         id="sideBarMask"
       ></div>
       <div
-        className="fixed right-[-250px] z-50 flex h-screen w-[250px] flex-col bg-white transition-all"
+        className="fixed right-[-250px] z-30 flex h-screen w-[250px] flex-col bg-white transition-all"
         id="sideBarMenu"
       >
         <div id="sideBarAvatar" className="mx-auto mt-10">
@@ -86,11 +88,12 @@ function SideBar({ isOpen, handleCloseSideBar }) {
 export default function NavBar({ scrollModifier = 1 }) {
   const [isOpen, setIsOpen] = useState(false);
   const handleCloseSideBar = useCallback(() => {
+    let navbar = document.getElementById("navBar");
     const mask = document.getElementById("sideBarMask");
     const sideBarMenu = document.getElementById("sideBarMenu");
     mask.classList.replace("animate-fade-in", "animate-fade-out");
     sideBarMenu.style.removeProperty("translate");
-
+    navbar.classList.remove("opacity-0");
     setTimeout(() => {
       setIsOpen(!isOpen);
     }, 500);
