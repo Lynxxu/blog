@@ -96,7 +96,7 @@ export default function ImageCarousel() {
   return (
     <>
       <DarkenedLayer />
-      <div id="carousel-background" className="absolute w-full">
+      <div id="carousel-background" className="absolute h-full w-full">
         <Image
           priority={true}
           src={imageArray[0]}
@@ -179,7 +179,6 @@ export default function ImageCarousel() {
           className={`absolute inset-0 m-auto object-cover opacity-0`}
           style={{ transitionDuration: "300ms" }}
         />
-        <div className=" m-auto h-[150px] w-[100%] max-w-[1200px] bg-black "></div>
       </div>
     </>
   );
