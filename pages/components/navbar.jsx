@@ -185,7 +185,7 @@ export default function NavBar({ scrollModifier = 1 }) {
         />
       )}
       <header
-        className="fixed z-40 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
+        className="fixed z-30 w-full bg-transparent p-3 text-white shadow-lg backdrop-blur-lg "
         style={{ transition: "all 1s" }}
         id="navBar"
       >

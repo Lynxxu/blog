@@ -96,7 +96,7 @@ export default function ImageCarousel() {
   return (
     <>
       <DarkenedLayer />
-      <div id="carousel-background" className="absolute h-[100vh] w-full">
+      <div id="carousel-background" className="absolute w-full">
         <Image
           priority={true}
           src={imageArray[0]}
@@ -130,7 +130,7 @@ export default function ImageCarousel() {
       </div>
       <div
         id="carousel-front"
-        className="container relative z-20 m-auto h-[100vh]"
+        className="relative z-20 m-auto h-[100vh] 2xl:container"
       >
         <div id="carousel-buttons" className="hidden 2xl:block">
           <button
@@ -179,6 +179,7 @@ export default function ImageCarousel() {
           className={`absolute inset-0 m-auto object-cover opacity-0`}
           style={{ transitionDuration: "300ms" }}
         />
+        <div className=" m-auto h-[150px] w-[100%] max-w-[1200px] bg-black "></div>
       </div>
     </>
   );

@@ -134,6 +134,7 @@ export default function HomePageContent() {
         embark on this journey together, one post at a time."
         />
         <Image
+          className="mt-20"
           src={starRail}
           width={200}
           height={200}
