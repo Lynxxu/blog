@@ -90,7 +90,13 @@ export default function ImageCarousel() {
   const imageArray = [
     "/images/Fushimi-inari-taisha.jpg",
     "/images/KON-table.jpg",
-    "/images/ToyosatoStation.jpg",
+    "/images/Toroton Fall lakeshore.JPG",
+  ];
+
+  const imageArrayTitles = [
+    "/images/Fushimi-inari-taisha-title.png",
+    "/images/K-ON-table-title.png",
+    "/images/Toronto fall lakeshore and title.png",
   ];
 
   return (
@@ -153,7 +159,7 @@ export default function ImageCarousel() {
           </button>
         </div>
         <Image
-          src={imageArray[0]}
+          src={imageArrayTitles[0]}
           width={1200}
           height={1000}
           alt="images for articles"
@@ -162,7 +168,7 @@ export default function ImageCarousel() {
           style={{ transitionDuration: "300ms" }}
         />
         <Image
-          src={imageArray[1]}
+          src={imageArrayTitles[1]}
           width={1200}
           height={1000}
           alt="images for articles"
@@ -171,7 +177,7 @@ export default function ImageCarousel() {
           style={{ transitionDuration: "300ms" }}
         />
         <Image
-          src={imageArray[2]}
+          src={imageArrayTitles[2]}
           width={1200}
           height={1000}
           alt="images for articles"
