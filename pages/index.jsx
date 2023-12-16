@@ -22,7 +22,7 @@ export default function Home() {
       />
 
       <HomePageContent />
-      <ImageCarousel />
+      {/* <ImageCarousel /> */}
       <Footer />
     </>
   );
