@@ -92,7 +92,7 @@ function CollapsableSideBar() {
   );
 }
 
-function LatestFromBlog() {
+function RecommendedArticles() {
   return (
     <>
       <p>Recommended Articles</p>
@@ -142,13 +142,13 @@ export default function HomePageContent() {
         />
       </div>
       <ConLogoDivide />
-      <LineDivide />
+      {/* <LineDivide />
       <div
         id="content"
         className=" m-auto flex flex-wrap justify-center align-top"
       >
-        <LatestFromBlog />
-      </div>
+        <RecommendedArticles />
+      </div> */}
     </div>
   );
 }

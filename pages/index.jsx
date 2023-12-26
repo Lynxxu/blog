@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Travel from "./components/homepage/travel.jsx";
 import ImageHeaderFull from "./components/ImageStyle.jsx";
 import { ImageHeaderHalf } from "./components/ImageHeaderHalf.jsx";
 import NavBar from "./components/navbar.jsx";
@@ -24,6 +25,7 @@ export default function Home() {
       <HomePageContent />
       <ImageCarousel />
       <Footer />
+      {/* <Travel /> */}
     </>
   );
 }
