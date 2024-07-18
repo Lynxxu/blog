@@ -4,6 +4,7 @@ import ProfilePic from "../../public/images/ProfilePicTignari.jpg";
 import constallation from "../../public/images/Logo-Con.png";
 import starRail from "../../public/images/StarRail.jpg";
 import { ConLogoDivide } from "./ImageStyle.jsx";
+import ImageCarousel from "./ImageCarousel.jsx";
 
 export function LineDivide() {
   return <hr className="divide-y-1 mb-4 w-full border-gray-400 opacity-30" />;
@@ -13,6 +14,15 @@ export function CenterTextDiv({ text }) {
   return (
     <div className="m-5 mt-40 font-serif text-2xl font-normal md:w-1/2">
       <p className="container my-20 ">{text}</p>
+    </div>
+  );
+}
+
+export function CenteredSubHeading({ text }) {
+  return (
+    <div className="my-10 flex w-full flex-col items-center text-center font-serif text-4xl font-medium">
+      <p className="container w-full p-5 text-center">{text}</p>
+      <hr className="break w-3/4" />
     </div>
   );
 }
@@ -60,9 +70,10 @@ function ImageArticleCardSquare({
   width = 750,
 }) {
   return (
-    <Link href={articleSrc}>
-      <div className="m-auto mt-3 rounded-lg p-4">
-        <div className="flex w-full flex-col items-center justify-center">
+
+      <div className="m-auto mt-3 rounded-lg p-4 w-full h-full">
+            <Link href={articleSrc} className="w-full">
+        <div className="flex w-full flex-col items-center justify-between h-full">
           <Image
             src={imageSrc}
             width={width}
@@ -74,8 +85,9 @@ function ImageArticleCardSquare({
             {title}
           </h2>
         </div>
+        </Link>
       </div>
-    </Link>
+
   );
 }
 
@@ -122,33 +134,90 @@ function RecommendedArticles() {
 
 export default function HomePageContent() {
   return (
-    <div id="main-wrapper" className="container m-auto mt-2 p-1 md:mt-5 md:p-4">
+    <>
       <div
-        id="content"
-        className=" m-auto flex flex-wrap items-center justify-center"
+        id="main-wrapper-1"
+        className="container m-auto mt-2 p-1 md:mt-5 md:p-4"
       >
-        <CenterTextDiv
-          text="Welcome to my creative haven. I'm Lynx, a traveler and gamer at
+        <div
+          id="content"
+          className=" m-auto flex flex-wrap items-center justify-center"
+        >
+          <CenterTextDiv
+            text="Welcome to my creative haven. I'm Lynx, a traveler and gamer at
         heart. Join me as I explore the world, delve into Japanese ACG, and
         share insights from front-end development to travel logs. Let's
         embark on this journey together, one post at a time."
-        />
-        <Image
-          className="mt-20"
-          src={starRail}
-          width={200}
-          height={200}
-          alt="starRail picture for deco"
-        />
-      </div>
-      <ConLogoDivide />
-      {/* <LineDivide />
+          />
+          <Image
+            className="mt-20"
+            src={starRail}
+            width={200}
+            height={200}
+            alt="starRail picture for deco"
+          />
+        </div>
+        {/* <ConLogoDivide /> */}
+
+        {/* <LineDivide />
       <div
         id="content"
         className=" m-auto flex flex-wrap justify-center align-top"
       >
         <RecommendedArticles />
       </div> */}
+      </div>
+      <CenteredSubHeading text={"Portals"} />
+      <Directories />
+      <br />
+      <CenteredSubHeading text={"Travel notes"} />
+      <ImageCarousel />
+    </>
+  );
+}
+
+function Directories() {
+  return (
+    <div
+      id="main-wrapper-1"
+      className="container m-auto mt-2 grid grid-cols-2 p-1 md:mt-5 md:p-4 lg:grid-cols-3 "
+    >
+      <ImageArticleCardSquare
+        title="Next.js introduction"
+        articleSrc={"#"}
+        alt={"My tour to Kyoto"}
+        imageSrc={"/images/Next.js.png"}
+      />
+      <ImageArticleCardSquare
+        title="React, interesting framework"
+        articleSrc={"#"}
+        alt={"My tour to Kyoto"}
+        imageSrc={"/images/React.png"}
+      />
+      <ImageArticleCardSquare
+        title="Why Bootstrap if tailwind"
+        articleSrc={"#"}
+        alt={"My tour to Kyoto"}
+        imageSrc={"/images/Tailwindcss6.png"}
+      />
+      <ImageArticleCardSquare
+        title="HTML Introduction"
+        articleSrc={"#"}
+        alt={"My tour to Kyoto"}
+        imageSrc={"/images/HTML.PNG"}
+      />
+      <ImageArticleCardSquare
+        title="Japanese Via Songs: アンコール"
+        articleSrc={"#"}
+        alt={"My tour to Kyoto"}
+        imageSrc={"/images/Thebook2.png"}
+      />
+      <ImageArticleCardSquare
+        title="Toronot at Fall"
+        articleSrc={"#"}
+        alt={"My tour to Kyoto"}
+        imageSrc={"/images/Toroton Fall lakeshore.jpg"}
+      />
     </div>
   );
 }
