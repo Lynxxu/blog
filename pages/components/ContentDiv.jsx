@@ -204,7 +204,7 @@ function Directories() {
         title="HTML Introduction"
         articleSrc={"#"}
         alt={"My tour to Kyoto"}
-        imageSrc={"/images/HTML.PNG"}
+        imageSrc={"/images/HTML.png"}
       />
       <ImageArticleCardSquare
         title="Japanese Via Songs: アンコール"
