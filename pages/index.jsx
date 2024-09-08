@@ -132,22 +132,21 @@ export default function Home() {
           </div>
         </div>
         <div className="mx-auto max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mt-10 font-openSans">
-          <a href="#" className="text-blue-500 hover:text-blue-600">
           <div className="flex flex-col sm:flex-row gap-6">
-            <div className="w-full sm:w-2/3 flex flex-col bg-transparent hover:bg-gray-100 transition-colors duration-300 rounded-2xl p-5">
-              <h2 className="text-black text-xl font-semibold mt-2">Streamlining language learning process with anki: Japanese as an example</h2>
-              <p className="text-gray-700 mt-2">If you are cramming vocabularies from textbooks and memorizing them by pure repeititon without any understanding of the word, you might be intreseted in this article, where I share with you my vocabulary mining process from immersive expreience like anime.</p>
-              <div className="flex justify-between items-center mt-4">
-                <span >Read →</span>
-                <span className="text-gray-500 text-sm italic">August 10, 2024</span>
+            <a href="#" className="text-blue-500 hover:text-blue-600 w-full sm:w-2/3">
+              <div className="flex flex-col bg-transparent hover:bg-gray-100 transition-colors duration-300 rounded-2xl p-5">
+                <h2 className="text-black text-xl font-semibold mt-2">Streamlining language learning process with anki: Japanese as an example</h2>
+                <p className="text-gray-700 mt-2">If you are cramming vocabularies from textbooks and memorizing them by pure repeititon without any understanding of the word, you might be intreseted in this article, where I share with you my vocabulary mining process from immersive experience like anime.</p>
+                <div className="flex justify-between items-center mt-4">
+                  <span>Read →</span>
+                  <span className="text-gray-500 text-sm italic">August 10, 2024</span>
+                </div>
               </div>
-            </div>
+            </a>
             <div className="w-full sm:w-1/3 justify-center items-center bg-transparent transition-colors duration-300 rounded-2xl p-5">
               <p className="text-black text-lg mb-4 italic font-openSans">Interested in my legacy site? <a href="legacy" className="text-blue-400 hover:text-blue-600"> Visit</a></p>
-                
             </div>
           </div>
-          </a>
         </div>
         <style jsx>{`
           @keyframes carousel {
