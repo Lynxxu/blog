@@ -1,11 +1,6 @@
 import Head from "next/head";
 import Background from "./components/PersonalWeb/Background.jsx";
-import ImageHeaderFull from "./components/ImageStyle.jsx";
-import { ImageHeaderHalf } from "./components/ImageHeaderHalf.jsx";
-import NavBar from "./components/navbar.jsx";
-import HomePageContent from "./components/ContentDiv.jsx";
 import Footer from "./components/footer.jsx";
-import ImageCarousel from "./components/ImageCarousel.jsx";
 import { useState, useEffect } from "react";
 import Image from 'next/image';
 
@@ -36,7 +31,7 @@ export default function Home() {
     };
   }, []);
 
-  const rotationAngles = [-2, 2, -1, 1];
+  const rotationClasses = ['-rotate-2', 'rotate-2', '-rotate-1', 'rotate-1'];
 
   return (
     <>
@@ -112,34 +107,46 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="mt-12 sm:mt-16 md:mt-20">
-            <div className="flex flex-col gap-8 sm:gap-12 md:gap-16">
-              {/* Add your content sections here */}
-              {/* For example: Recent Articles, Featured Projects, etc. */}
-            </div>
-          </div>
+          
         </div>
-        
-        <div className="relative z-50  overflow-hidden p-10">
+        <div className="relative z-50 overflow-hidden p-10">
           <div className="flex animate-carousel">
             {[...Array(24)].map((_, index) => (
               <div
                 key={index}
-                className={`drop-shadow-xl photo-item relative aspect-[9/8] w-32 sm:w-44 md:w-56 flex-none overflow-hidden rounded-sm sm:rounded-xl md:rounded-3xl border border-gray-400 bg-zinc-100 dark:bg-zinc-800 hover:shadow-lg transition-shadow duration-300 rotate-${rotationAngles[index % rotationAngles.length]} mx-[10px]`}
+                className={`drop-shadow-xl photo-item relative aspect-[7/10] w-32 sm:w-44 md:w-56 flex-none overflow-hidden rounded-sm sm:rounded-xl md:rounded-3xl hover:shadow-lg transition-shadow duration-300 ${rotationClasses[index % 4]} mx-[10px]`}
+                style={{
+                  background: `linear-gradient(to bottom, var(--tw-bg-opacity-zinc-100) 0%, var(--tw-bg-opacity-zinc-100) 50%, transparent 50%, transparent 100%)`,
+                }}
               >
                 <Image
                   src={`/images/carousel/image${(index % 12) + 1}.jpg`}
                   alt={`Carousel image ${(index % 12) + 1}`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: 'cover' }}
                   quality={100}
-                  sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 224px"
+                  sizes="(max-width: 1080px) 520px, (max-width: 1080px) 520px, 520px"
                 />
               </div>
             ))}
           </div>
         </div>
-        
+        <div className="mx-auto max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mt-10 font-openSans">
+          <div className="flex flex-col sm:flex-row gap-6">
+            <div className="w-full sm:w-2/3 flex flex-col bg-transparent hover:bg-gray-100 transition-colors duration-300 rounded-2xl p-5">
+              <h2 className="text-black text-xl font-semibold mt-2">Small Features, Big Impact: Google&apos;s Approach to Empowering the Visually Impaired</h2>
+              <p className="text-gray-700 mt-2">While most tech giants focus on flashy features for the masses, Google&apos;s I/O revealed a commitment to invisible innovations. They&apos;re crafting a future where technology doesn&apos;t just dazzle, but genuinely empowers — ensuring that when we reach for the stars, no one is left behind on Earth.</p>
+              <div className="flex justify-between items-center mt-4">
+                <a href="#" className="text-blue-500">Read →</a>
+                <span className="text-gray-500 text-sm italic">August 10, 2024</span>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/3 justify-center items-center bg-transparent hover:bg-gray-100 transition-colors duration-300 rounded-2xl p-5">
+              <p className="text-black text-lg mb-4 italic font-openSans">Interested in my legacy site? <a href="legacy" className="text-blue-500"> Visit</a></p>
+                
+            </div>
+          </div>
+        </div>
         <style jsx>{`
           @keyframes carousel {
             0% {
@@ -152,11 +159,13 @@ export default function Home() {
           .animate-carousel {
             animation: carousel 120s linear infinite;
           }
-        `}</style>
-        
-        <div className="h-[2000px] w-full" aria-hidden="true"></div>
+        `}
+        </style>
+        <div className="mx-auto w-full max-w-7xl lg:px-8">
+          <Footer />
+        </div>
       </main>
-      <Footer />
+
     </>
   );
 }
