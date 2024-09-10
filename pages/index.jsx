@@ -80,7 +80,7 @@ export default function Home() {
           <div className="pb-10 top-0" id="sticky-nav">
             <div className="sticky top-0" id="sticky-inner">
               <div id="nav-menu" className="flex justify-between items-center h-16 pt-10">
-                <div className="flex-1"></div>
+                <div className="sm:flex-1"></div>
                 <div className="flex-1 flex justify-center">
                   <div className="hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
                     <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">About</a>
@@ -102,7 +102,7 @@ export default function Home() {
                     </button>
                   </div>
                   <div 
-                    className="transition-all bg-white dark:bg-zinc-800 duration-50 relative p-1 px-2 border-[1px] hover:border-zinc-200 border-zinc-100 dark:border-zinc-800 hover:drop-shadow-md drop-shadow-sm rounded-full group cursor-pointer"
+                    className=" transition-all bg-white dark:bg-zinc-800 duration-50 relative p-1 px-2 border-[1px] hover:border-zinc-200 border-zinc-100 dark:border-zinc-800 hover:drop-shadow-md drop-shadow-sm rounded-full group cursor-pointer"
                     onClick={toggleDarkMode}
                   >
                     <Image
@@ -110,14 +110,14 @@ export default function Home() {
                       alt="Sun Icon"
                       width={24}
                       height={24}
-                      className={`opacity-60 animate-spin-slow group-hover:opacity-100 transition-opacity duration-100 ${isDarkMode ? 'hidden' : ''}`}
+                      className={`w-6 h-6 sm:w-6 sm:h-6 opacity-60 animate-spin-slow group-hover:opacity-100 transition-opacity duration-100 ${isDarkMode ? 'hidden' : ''}`}
                     />
                     <Image
                       src="/images/half-moon.svg"
                       alt="Moon Icon"
                       width={24}
                       height={24}
-                      className={`opacity-60 group-hover:opacity-100 transition-opacity duration-100 ${isDarkMode ? '' : 'hidden'}`}
+                      className={` w-6 h-6 sm:w-6 sm:h-6 opacity-60 group-hover:opacity-100 transition-opacity duration-100 ${isDarkMode ? '' : 'hidden'}`}
                     />
                   </div>
                 </div>
