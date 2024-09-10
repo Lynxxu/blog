@@ -253,7 +253,7 @@ export default function Home() {
             }
           }
           .animate-carousel {
-            animation: carousel 60s linear infinite;
+            animation: carousel 100s linear infinite;
           }
         `}
         </style>
