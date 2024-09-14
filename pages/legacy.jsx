@@ -3,9 +3,9 @@ import Travel from "./components/homepage/travel.jsx";
 import ImageHeaderFull from "./components/PersonalWeb/ImageStyle.jsx";
 import { ImageHeaderHalf } from "./components/PersonalWeb/ImageHeaderHalf.jsx";
 import NavBar from "./components/PersonalWeb/navbar.jsx";
-import HomePageContent from "./components/PersonalWeb/ContentDiv.jsx/index.js";
+import HomePageContent from "./components/PersonalWeb/ContentDiv.jsx";
 import Footer from "./components/footer.jsx";
-import ImageCarousel from "./components/ImageCarousel.jsx";
+import ImageCarousel from "./components/PersonalWeb/ImageCarousel.jsx";
 
 export default function Home() {
   return (
