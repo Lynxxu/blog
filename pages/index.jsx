@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Background from "./components/PersonalWeb/Background.jsx";
 import Footer from "./components/footer.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from 'next/image';
 import ArticleCard from './components/ArticleCards.jsx';
 import Navigation from './components/PersonalWeb/Navigation.jsx';
@@ -18,6 +18,10 @@ export default function Home() {
   };
 
   const rotationClasses = ['-rotate-2', 'rotate-2', '-rotate-1', 'rotate-1'];
+
+  useEffect(() => {
+    console.log('Current language:', language);
+  }, [language]);
 
   return (
     <>
