@@ -3,14 +3,15 @@ import Background from "./components/PersonalWeb/Background.jsx";
 import Footer from "./components/footer.jsx";
 import { useState, useEffect } from "react";
 import Image from 'next/image';
-import ArticleCard from './components/ArticleCards.jsx';
+import ArticleCard from './components/PersonalWeb/ArticleCards.jsx';
 import Navigation from './components/PersonalWeb/Navigation.jsx';
-import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../context/Translations';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Home() {
+  const { t } = useTranslation('common');
+  const { t:tC } = useTranslation('articleCards');
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const { language } = useLanguage();
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -18,10 +19,6 @@ export default function Home() {
   };
 
   const rotationClasses = ['-rotate-2', 'rotate-2', '-rotate-1', 'rotate-1'];
-
-  useEffect(() => {
-    console.log('Current language:', language);
-  }, [language]);
 
   return (
     <>
@@ -36,15 +33,13 @@ export default function Home() {
         <div className="mx-auto max-w-full px-6 sm:px-6 lg:px-8 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
           <div className="max-w-full sm:max-w-xl md:max-w-2xl">
             <h1 
-              className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-white transition-colors duration-300 sm:text-4xl md:text-5xl"
-              lang={language} // Add this line
+              className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-white transition-colors duration-300 sm:text-4xl md:text-5xl" Add this line
             >
-              {translations[language].title}
+              {t('title')}
             </h1>
             <p 
               className="mt-4 sm:mt-6 leading-[1.75rem] text-zinc-600 dark:text-zinc-300 transition-colors duration-300"
-              dangerouslySetInnerHTML={{ __html: translations[language].description }}
-              lang={language} // Add this line
+              dangerouslySetInnerHTML={{ __html: t('description') }}
             />
             <div className="flex justify-start mt-6 space-x-8 mb-10">
               <a href="https://x.com/1026Will" target="_blank" rel="noopener noreferrer">
@@ -104,20 +99,20 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="flex flex-col gap-6 lg:w-2/3">
               <ArticleCard
-                title="Streamlining language learning process with anki: Japanese as an example"
-                description="If you are cramming vocabularies from textbooks and memorizing them by pure repeititon without any understanding of the word, you might be intreseted in this article, where I share with you my vocabulary mining process from immersive experience like anime."
-                date="August 10, 2024"
-                link="#"
+                title={tC('title-1')}
+                description={tC('description-1')}
+                date={tC('date-1')}
+                link='#'
               />
               <ArticleCard
-                title="Anki: The most powerful language learning tool you can find - AND IT&apos;S FREE"
-                description="Learning an language and trying to memorize vocabularies? Trying to study for some memorization heavy subjects? Let me introduce you to the open-source flashcard app called Anki. You'll thank me later ."
-                date="September 15, 2024"
+                title={tC('title-2')}
+                description={tC('description-2')}
+                date={tC('date-2')}
                 link="#"
               />
             </div>
             <div className="w-full lg:w-1/3 justify-center items-center bg-transparent transition-colors duration-300 rounded-2xl p-5">
-              <p className="text-black dark:text-white transition-colors duration-300 text-lg mb-4 italic text-right font-openSans">Interested in my legacy site? <a href="legacy" className="text-blue-400 hover:text-blue-600 dark:text-blue-300 dark:hover:text-blue-400"> Visit</a></p>
+              <p className="text-black dark:text-white transition-colors duration-300 text-lg mb-4 italic text-right font-openSans">{t('legacy')} <a href="legacy" className="text-blue-400 hover:text-blue-600 dark:text-blue-300 dark:hover:text-blue-400"> Visit</a></p>
             </div>
           </div>
         </div>
@@ -141,6 +136,14 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'articleCards'], null, ['en', 'ja', 'zh'])),
+    },
+  }
 }
 
 

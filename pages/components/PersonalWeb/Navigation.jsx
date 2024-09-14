@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
-import { useLanguage } from '../../../context/LanguageContext';
-import { translations } from '../../../context/Translations';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 export default function Navigation({ isDarkMode, toggleDarkMode }) {
-  const { language, changeLanguage } = useLanguage();
+  const { t } = useTranslation('common');
+  const router = useRouter();
   const [windowWidth, setWindowWidth] = useState(0);
   const [avatarSize, setAvatarSize] = useState(50);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
   const languageMenuRef = useRef(null);
 
   useEffect(() => {
-    console.log('Current language:', language);
+    
     const handleResize = () => {
       const newWidth = window.innerWidth;
       setWindowWidth(newWidth);
@@ -62,10 +63,11 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
     setIsLanguageMenuOpen(!isLanguageMenuOpen);
   };
 
-  const handleLanguageChange = (lang) => {
-    changeLanguage(lang);
-    setIsLanguageMenuOpen(false);
+  const changeLanguage = (newLanguage) => {
+    router.push(router.pathname, router.asPath, { locale: newLanguage });
+    setIsLanguageMenuOpen(false); // Close the menu after selection
   };
+
 
   return (
     <header className="relative">
@@ -75,11 +77,11 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
             <div id="nav-menu" className="flex justify-between items-center h-16 pt-10">
               <div className="sm:flex-1"></div>
               <div className="flex-1 flex justify-center">
-                <div data-lang={language} className="min-w-[300px] hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].about}</a>
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].articles}</a>
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].projects}</a>
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].uses}</a>
+                <div className="min-w-[300px] hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('about')}</a>
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('articles')}</a>
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('projects')}</a>
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('uses')}</a>
                 </div>
               </div>
               <div className="flex-1 flex justify-end sm:justify-center items-center space-x-4">
@@ -124,14 +126,14 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
                   />
                   <div 
                     ref={languageMenuRef}
-                    className={`absolute opacity-100 right-0 mt-2 w-40 bg-white dark:bg-zinc-800 rounded-md shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
+                    className={`absolute mt-5 opacity-100 right-0 w-40 bg-white dark:bg-zinc-800 rounded-md shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
                       isLanguageMenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-100'
                     }`}
                   >
-                    <div className="py-1" data-lang={language}>
-                      <button onClick={() => handleLanguageChange('en')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">English</button>
-                      <button onClick={() => handleLanguageChange('zh')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">简体中文</button>
-                      <button onClick={() => handleLanguageChange('ja')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">日本語</button>
+                    <div className="py-1" >
+                      <button onClick={() => changeLanguage('en')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">English</button>
+                      <button onClick={() => changeLanguage('zh')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">简体中文</button>
+                      <button onClick={() => changeLanguage('ja')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">日本語</button>
                     </div>
                   </div>
                 </div>
@@ -165,10 +167,10 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
             </button>
           </div>
           <div className="flex flex-col space-y-4">
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].about}</a>
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].articles}</a>
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].projects}</a>
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].uses}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('about')}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('articles')}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('projects')}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('uses')}</a>
           </div>
         </div>
       </div>

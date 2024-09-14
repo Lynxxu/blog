@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Travel from "./components/homepage/travel.jsx";
-import ImageHeaderFull from "./components/ImageStyle.jsx";
-import { ImageHeaderHalf } from "./components/ImageHeaderHalf.jsx";
-import NavBar from "./components/navbar.jsx";
-import HomePageContent from "./components/ContentDiv.jsx";
+import ImageHeaderFull from "./components/PersonalWeb/ImageStyle.jsx";
+import { ImageHeaderHalf } from "./components/PersonalWeb/ImageHeaderHalf.jsx";
+import NavBar from "./components/PersonalWeb/navbar.jsx";
+import HomePageContent from "./components/PersonalWeb/ContentDiv.jsx/index.js";
 import Footer from "./components/footer.jsx";
 import ImageCarousel from "./components/ImageCarousel.jsx";
 

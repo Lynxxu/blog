@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Inter, Cormorant, EB_Garamond, Open_Sans, Noto_Sans, Noto_Sans_SC, Zen_Kaku_Gothic_New } from "next/font/google";
-import { LanguageProvider } from '../context/LanguageContext.js';
+import { appWithTranslation } from 'next-i18next';
+import nextI18nextConfig from "@/next-i18next.config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,11 +40,9 @@ function App({ Component, pageProps }) {
     <main
       className={`${inter.variable} ${cormorant.variable} ${garamond.variable} ${openSans.variable} ${notoSansCN.variable} ${zenKaku.variable} font-sans`}
     >
-      <LanguageProvider>
         <Component {...pageProps} />
-      </LanguageProvider>
     </main>
   );
 }
 
-export default App;
+export default appWithTranslation(App, nextI18nextConfig);
