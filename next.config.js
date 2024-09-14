@@ -1,14 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  // Remove the i18n configuration if present
-  // i18n,
+  output: 'export',
   images: {
-    // Your image configuration here
+    unoptimized: true,
   },
-  experimental: {
-    // Other experimental features
-  }
+  // Add any other necessary configurations here
 }
 
 module.exports = nextConfig
