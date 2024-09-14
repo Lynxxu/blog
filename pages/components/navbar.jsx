@@ -118,7 +118,7 @@ export default function NavBar({ scrollModifier = 1 }) {
         headerLogo.classList.remove("invert");
       }
     });
-  }, []);
+  }, [scrollModifier]);
 
   const [windowWidth, setWindowWidth] = useState(0);
 
