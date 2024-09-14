@@ -1,6 +1,6 @@
-import styles from "../../styles/Components/themes.module.css";
+import styles from "../../../styles/Components/themes.module.css";
 import Image from "next/image";
-import LogoCon from "../../public/images/Logo-Con-tri.png";
+import LogoCon from "../../../public/images/Logo-Con-tri.png";
 
 export function DarkenedLayer() {
   return (

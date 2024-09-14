@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProfilePic from "../../public/images/ProfilePicTignari.jpg";
-import constallation from "../../public/images/Logo-Con.png";
-import starRail from "../../public/images/StarRail.jpg";
+import ProfilePic from "../../../public/images/ProfilePicTignari.jpg";
+import constallation from "../../../public/images/Logo-Con.png";
+import starRail from "../../../public/images/StarRail.jpg";
 import { ConLogoDivide } from "./ImageStyle.jsx";
 import ImageCarousel from "./ImageCarousel.jsx";
 

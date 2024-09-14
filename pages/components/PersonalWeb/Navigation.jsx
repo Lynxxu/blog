@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
-export default function Navigation({ isDarkMode, toggleDarkMode }) {
+export default function Navigation({ isDarkMode, toggleDarkMode, largeAvatar }) {
   const { t } = useTranslation('common');
   const router = useRouter();
   const [windowWidth, setWindowWidth] = useState(0);
-  const [avatarSize, setAvatarSize] = useState(50);
+  const [avatarSize, setAvatarSize] = useState(64);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -26,12 +26,16 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
     window.addEventListener("resize", handleResize);
 
     const handleScroll = () => {
-      const navElement = document.getElementById('nav-container');
-      if (navElement) {
-        const navBottom = navElement.getBoundingClientRect().bottom;
-        const scrollPercentage = Math.min(1, Math.max(0.3, window.scrollY / navBottom));
-        const newSize = 70 - (20 * scrollPercentage);
-        setAvatarSize(newSize);
+      if (largeAvatar) {
+        const navElement = document.getElementById('nav-container');
+        if (navElement) {
+          const navBottom = navElement.getBoundingClientRect().bottom;
+          const scrollPercentage = Math.min(1, Math.max(0.3, window.scrollY / navBottom));
+          const newSize = 70 - (20 * scrollPercentage);
+          setAvatarSize(newSize);
+        }
+      } else {
+        setAvatarSize(40); // Fixed size for small avatar
       }
     };
 
@@ -53,7 +57,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [largeAvatar]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -72,10 +76,22 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
   return (
     <header className="relative">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="nav-container">
-        <div className="pb-10 top-0" id="sticky-nav">
+        <div className={'pb-10 top-0'} id="sticky-nav">
           <div className="sticky top-0" id="sticky-inner">
             <div id="nav-menu" className="flex justify-between items-center h-16 pt-10">
-              <div className="sm:flex-1"></div>
+              <div className={`sm:flex-1 ${largeAvatar ? '' : 'flex items-center'} `}>
+                {!largeAvatar && (
+                  <a href="#">
+                    <Image 
+                      src="/images/avatar.jpg" 
+                      alt="Description" 
+                      className="rounded-full ml-40"  
+                      width={40} 
+                      height={40}
+                    />
+                  </a>
+                )}
+              </div>
               <div className="flex-1 flex justify-center">
                 <div className="min-w-[300px] hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
                   <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('about')}</a>
@@ -140,16 +156,18 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
               </div>
             </div>
           </div>
-          <div className="mx-auto max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl pt-10 px-4 sm:px-6 lg:px-8">
-            <Image 
-              src="/images/avatar.jpg" 
-              alt="Description" 
-              className="rounded-full sticky z-50 hover:shadow-xl"  
-              width={avatarSize} 
-              height={avatarSize}
-              style={{ width: `${avatarSize}px`, height: `${avatarSize}px`, transition: 'width 0.1s, height 0.1s' }}
-            />
-          </div>
+          {largeAvatar && (
+            <div className="mx-auto max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl pt-10 px-4 sm:px-6 lg:px-8">
+              <Image 
+                src="/images/avatar.jpg" 
+                alt="Description" 
+                className="rounded-full sticky z-50 hover:shadow-xl"  
+                width={avatarSize} 
+                height={avatarSize}
+                style={{ width: `${avatarSize}px`, height: `${avatarSize}px`, transition: 'width 0.1s, height 0.1s' }}
+              />
+            </div>
+          )}
         </div>
       </nav>
       <div className={`fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>

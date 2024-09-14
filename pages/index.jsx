@@ -28,7 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Background />
-      <Navigation isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Navigation isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} largeAvatar={true} />
       <main className="relative mt-3">
         <div className="mx-auto max-w-full px-6 sm:px-6 lg:px-8 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
           <div className="max-w-full sm:max-w-xl md:max-w-2xl">

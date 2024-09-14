@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { DarkenedLayer, getLocalCursorPosition } from "./ImageStyle.jsx";
 import { useEffect, useState } from "react";
-import styles from "../../styles/Components/themes.module.css";
+import styles from "../../../styles/Components/themes.module.css";
 
 export default function ImageCarousel() {
   let imageIndex = 0;
