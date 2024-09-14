@@ -16,6 +16,10 @@
   .dark ::-webkit-scrollbar-thumb {
     @apply bg-blue-400; /*color trackbar for dark mode*/
   }
+
+  :lang(zh), :lang(zh-CN) {
+    font-family: var(--font-notoSansCN), sans-serif;
+  }
 }
 
 @layer components {

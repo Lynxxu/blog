@@ -5,9 +5,12 @@ import { useState } from "react";
 import Image from 'next/image';
 import ArticleCard from './components/ArticleCards.jsx';
 import Navigation from './components/PersonalWeb/Navigation.jsx';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../context/Translations';
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { language } = useLanguage();
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -28,12 +31,17 @@ export default function Home() {
       <main className="relative mt-3">
         <div className="mx-auto max-w-full px-6 sm:px-6 lg:px-8 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
           <div className="max-w-full sm:max-w-xl md:max-w-2xl">
-            <h1 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-white transition-colors duration-300 sm:text-4xl md:text-5xl">
-              Chronic overthinker, ACG enthusiast, cringy adult.
+            <h1 
+              className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-white transition-colors duration-300 sm:text-4xl md:text-5xl"
+              lang={language} // Add this line
+            >
+              {translations[language].title}
             </h1>
-            <p className="mt-4 sm:mt-6 leading-[1.75rem] text-zinc-600 dark:text-zinc-300 transition-colors duration-300">
-              I&apos;m Lynx, a chemisty graduate looking for a job at the moment. I&apos;m a introvert, a beyond-average ACG fan, and a <span className='italic'>Mikka Bouzu</span>. This is simply a personal website built for fun as I&apos;m busy being unemployed. I will upload articles to this website about almost anything from cringy night thougths to serious Japanese grammar.
-            </p>
+            <p 
+              className="mt-4 sm:mt-6 leading-[1.75rem] text-zinc-600 dark:text-zinc-300 transition-colors duration-300"
+              dangerouslySetInnerHTML={{ __html: translations[language].description }}
+              lang={language} // Add this line
+            />
             <div className="flex justify-start mt-6 space-x-8 mb-10">
               <a href="https://x.com/1026Will" target="_blank" rel="noopener noreferrer">
                 <Image

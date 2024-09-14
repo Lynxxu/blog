@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
+import { useLanguage } from '../../../context/LanguageContext';
+import { translations } from '../../../context/Translations';
 
 export default function Navigation({ isDarkMode, toggleDarkMode }) {
+  const { language, changeLanguage } = useLanguage();
   const [windowWidth, setWindowWidth] = useState(0);
   const [avatarSize, setAvatarSize] = useState(50);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,6 +61,11 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
     setIsLanguageMenuOpen(!isLanguageMenuOpen);
   };
 
+  const handleLanguageChange = (lang) => {
+    changeLanguage(lang);
+    setIsLanguageMenuOpen(false);
+  };
+
   return (
     <header className="relative">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="nav-container">
@@ -66,11 +74,11 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
             <div id="nav-menu" className="flex justify-between items-center h-16 pt-10">
               <div className="sm:flex-1"></div>
               <div className="flex-1 flex justify-center">
-                <div className="hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">About</a>
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Articles</a>
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Projects</a>
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Uses</a>
+                <div lang={language} className="min-w-[300px] hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].about}</a>
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].articles}</a>
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].projects}</a>
+                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{translations[language].uses}</a>
                 </div>
               </div>
               <div className="flex-1 flex justify-end sm:justify-center items-center space-x-4">
@@ -119,10 +127,10 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
                       isLanguageMenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <div className="py-1">
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">English</a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">简体中文</a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">日本語</a>
+                    <div className="py-1" lang={language}>
+                      <button onClick={() => handleLanguageChange('en')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">English</button>
+                      <button onClick={() => handleLanguageChange('zh')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">简体中文</button>
+                      <button onClick={() => handleLanguageChange('ja')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700">日本語</button>
                     </div>
                   </div>
                 </div>
@@ -156,10 +164,10 @@ export default function Navigation({ isDarkMode, toggleDarkMode }) {
             </button>
           </div>
           <div className="flex flex-col space-y-4">
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">About</a>
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">Articles</a>
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">Projects</a>
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">Uses</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].about}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].articles}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].projects}</a>
+            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{translations[language].uses}</a>
           </div>
         </div>
       </div>
