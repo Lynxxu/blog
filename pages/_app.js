@@ -1,9 +1,5 @@
 import "@/styles/globals.css";
-
-import { Inter } from "next/font/google";
-import { Cormorant } from "next/font/google";
-import { EB_Garamond } from "next/font/google";
-import { Open_Sans } from "next/font/google";
+import { Inter, Cormorant, EB_Garamond, Open_Sans } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +21,7 @@ const openSans = Open_Sans({
   variable: "--font-openSans",
 });
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <main
       className={`${inter.variable} ${cormorant.variable} ${garamond.variable} ${openSans.variable} font-sans`}
@@ -34,3 +30,5 @@ export default function App({ Component, pageProps }) {
     </main>
   );
 }
+
+export default App;

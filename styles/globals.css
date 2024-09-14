@@ -12,6 +12,10 @@
   ::-webkit-scrollbar-thumb {
     @apply rounded-sm bg-green-400; /*color trackbar*/
   }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-blue-400; /*color trackbar for dark mode*/
+  }
 }
 
 @layer components {
