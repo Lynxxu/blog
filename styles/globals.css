@@ -20,6 +20,7 @@
   :lang(zh), :lang(zh-CN) {
     font-family: var(--font-notoSansCN), sans-serif;
   }
+
 }
 
 @layer components {

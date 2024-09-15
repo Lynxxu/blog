@@ -7,6 +7,7 @@ import ArticleCard from './components/PersonalWeb/ArticleCards.jsx';
 import Navigation from './components/PersonalWeb/Navigation.jsx';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import ContentContainer from './components/PersonalWeb/Utilities.jsx';
 
 export default function Home() {
   const { t } = useTranslation('common');
@@ -30,10 +31,10 @@ export default function Home() {
       <Background />
       <Navigation isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} largeAvatar={true} />
       <main className="relative mt-3">
-        <div className="mx-auto max-w-full px-6 sm:px-6 lg:px-8 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
+        <ContentContainer>
           <div className="max-w-full sm:max-w-xl md:max-w-2xl">
             <h1 
-              className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-white transition-colors duration-300 sm:text-4xl md:text-5xl" Add this line
+              className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-white transition-colors duration-300 sm:text-4xl md:text-5xl" id="title"
             >
               {t('title')}
             </h1>
@@ -72,7 +73,7 @@ export default function Home() {
             </div>
           </div>
           
-        </div>
+        </ContentContainer>
         <div className="relative overflow-hidden p-10">
           <div className="flex animate-carousel">
             {[...Array(24)].map((_, index) => (

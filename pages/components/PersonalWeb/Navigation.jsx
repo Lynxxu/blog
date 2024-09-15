@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-
+import Link from 'next/link';
 export default function Navigation({ isDarkMode, toggleDarkMode, largeAvatar }) {
   const { t } = useTranslation('common');
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode, largeAvatar }) 
     const handleResize = () => {
       const newWidth = window.innerWidth;
       setWindowWidth(newWidth);
-      if (newWidth >= 640) { // sm breakpoint
+      if (newWidth >= 640) { 
         setIsMenuOpen(false);
       }
     };
@@ -35,7 +35,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode, largeAvatar }) 
           setAvatarSize(newSize);
         }
       } else {
-        setAvatarSize(40); // Fixed size for small avatar
+        setAvatarSize(40); 
       }
     };
 
@@ -74,27 +74,27 @@ export default function Navigation({ isDarkMode, toggleDarkMode, largeAvatar }) 
 
 
   return (
-    <header className="relative">
+    <header className="relative z-20">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="nav-container">
-        <div className={'pb-10 top-0'} id="sticky-nav">
+        <div className={`pb-10 top-0 ${!largeAvatar ? 'mb-24' : ''}`} id="sticky-nav">
           <div className="sticky top-0" id="sticky-inner">
             <div id="nav-menu" className="flex justify-between items-center h-16 pt-10">
-              <div className={`sm:flex-1 ${largeAvatar ? '' : 'flex items-center'} `}>
+              <div className={`sm:flex-1 sm: ${largeAvatar ? '' : 'flex items-center'} `}>
                 {!largeAvatar && (
-                  <a href="#">
+                  <Link href="/">
                     <Image 
                       src="/images/avatar.jpg" 
                       alt="Description" 
-                      className="rounded-full ml-40"  
+                      className="rounded-full md:ml-40 sm:ml-10 "  
                       width={40} 
                       height={40}
                     />
-                  </a>
+                  </Link>
                 )}
               </div>
-              <div className="flex-1 flex justify-center">
+              <div className="sm:flex-1 sm:flex justify-center">
                 <div className="min-w-[300px] hidden sm:flex space-x-4 bg-white dark:bg-zinc-800 shadow-md rounded-full px-4 py-1 transition-colors duration-300">
-                  <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('about')}</a>
+                  <a href="../../posts/about" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('about')}</a>
                   <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('articles')}</a>
                   <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('projects')}</a>
                   <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">{t('uses')}</a>
@@ -185,7 +185,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode, largeAvatar }) 
             </button>
           </div>
           <div className="flex flex-col space-y-4">
-            <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('about')}</a>
+            <a href="../../posts/about" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('about')}</a>
             <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('articles')}</a>
             <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('projects')}</a>
             <a href="#" className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-600 dark:hover:text-zinc-400 py-2 text-sm font-medium transition-colors duration-300">{t('uses')}</a>

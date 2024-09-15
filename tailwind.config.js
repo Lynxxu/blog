@@ -38,6 +38,7 @@ module.exports = {
         sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
         serif: ["var(--font-garamond)", ...defaultTheme.fontFamily.serif],
         openSans: ["var(--font-openSans)", "sans"],
+        
       },
     },
   },
